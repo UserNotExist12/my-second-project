@@ -2,6 +2,10 @@ pipeline {
   agent any
   stages {
     stage('Stage 1') {
+      agent any
+      environment {
+        a1 = '1'
+      }
       steps {
         echo 'step1'
         echo 'step2'
@@ -10,6 +14,10 @@ pipeline {
       }
     }
     stage('Stage 2') {
+      agent any
+      environment {
+        a2 = '2'
+      }
       steps {
         echo 'step1'
         echo 'step2'
