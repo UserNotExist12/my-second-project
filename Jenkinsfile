@@ -37,6 +37,8 @@ pipeline {
         echo 'step2'
         sh 'sleep 3s'
         sh 'echo "this is a script"'
+        sh '''echo 1
+echo 2'''
       }
     }
   }
