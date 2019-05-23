@@ -15,10 +15,10 @@ pipeline {
             sh 'echo "this is a script"'
             sh 'mkdir sub1'
             dir(path: 'sub1') {
-              pwd()
+              echo pwd()
             }
 
-            pwd()
+            echo pwd()
           }
         }
         stage('Stage 1 Parallel') {
@@ -34,7 +34,6 @@ pipeline {
       }
     }
     stage('Stage 2') {
-      agent any
       environment {
         a2 = '2'
       }
