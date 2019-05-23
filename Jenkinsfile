@@ -39,6 +39,7 @@ pipeline {
         sh 'echo "this is a script"'
         sh '''echo 1
 echo 2'''
+        archiveArtifacts artifacts: 'build/*.jar', onlyIfSuccessful: true
       }
     }
   }
