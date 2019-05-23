@@ -15,10 +15,10 @@ pipeline {
             sh 'echo "this is a script"'
             sh 'mkdir sub1'
             dir(path: 'sub1') {
-              echo pwd()
+              sh 'pwd'
             }
 
-            echo pwd()
+            sh 'pwd'
           }
         }
         stage('Stage 1 Parallel') {
