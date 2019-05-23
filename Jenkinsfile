@@ -13,6 +13,12 @@ pipeline {
             echo 'step2'
             sh 'sleep 5s'
             sh 'echo "this is a script"'
+            sh 'mkdir sub1'
+            dir(path: 'sub1') {
+              pwd()
+            }
+
+            pwd()
           }
         }
         stage('Stage 1 Parallel') {
@@ -39,7 +45,7 @@ pipeline {
         sh 'echo "this is a script"'
         sh '''echo 1
 echo 2'''
-        archiveArtifacts artifacts: 'build/*.jar', onlyIfSuccessful: true
+        archiveArtifacts(artifacts: 'build/*.jar', onlyIfSuccessful: true)
       }
     }
   }
