@@ -15,10 +15,12 @@ pipeline {
             sh 'echo "this is a script"'
             sh 'mkdir sub1'
             dir(path: 'sub1') {
-              sh 'pwd'
+              sh 'mkdir aaa && cd aaa && pwd'
             }
 
             sh 'pwd'
+            sh 'aaaaa=1123'
+            sh 'echo ${aaaaa}'
           }
         }
         stage('Stage 1 Parallel') {
@@ -44,7 +46,6 @@ pipeline {
         sh 'echo "this is a script"'
         sh '''echo 1
 echo 2'''
-        archiveArtifacts(artifacts: 'build/*.jar', onlyIfSuccessful: true)
       }
     }
   }
