@@ -7,7 +7,7 @@ pipeline {
           agent any
           environment {
             a1 = 'a1111111'
-            a2 = env.a1 + '22222'
+            a2 = 'a2222222'
           }
           steps {
             echo env
