@@ -8,10 +8,10 @@ pipeline {
           environment {
             a1 = 'a1111111'
             a2 = 'a2222222'
+            a3 = '${env.JOB_NAME + env.BUILD_NUMBER}'
           }
           steps {
             echo env.a2
-            env.a3 = 'a333333'
             sh 'printenv'
             echo 'step1'
             echo 'step2'
