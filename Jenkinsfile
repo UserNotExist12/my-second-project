@@ -8,7 +8,7 @@ pipeline {
           environment {
             a1 = 'a1111111'
             a2 = 'a2222222'
-            a3 = '${env.JOB_NAME + env.BUILD_NUMBER}'
+            a3 = '${env.JOB_NAME} + ${env.BUILD_NUMBER}'
           }
           steps {
             echo env.a2
