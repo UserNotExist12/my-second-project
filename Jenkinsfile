@@ -10,8 +10,9 @@ pipeline {
             a2 = 'a2222222'
           }
           steps {
-            echo env.toString()
             echo env.a2
+            env.a3 = 'a333333'
+            sh 'printenv'
             echo 'step1'
             echo 'step2'
             sh 'sleep 5s'
