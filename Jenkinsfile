@@ -7,11 +7,11 @@ pipeline {
           agent any
           environment {
             a1 = 'a1111111'
-            a2 = '${a1}'
+            a2 = env.a1 + '22222'
           }
           steps {
-            echo '${a1}'
-            echo '${a2}'
+            echo env
+            echo env.a2
             echo 'step1'
             echo 'step2'
             sh 'sleep 5s'
