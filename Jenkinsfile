@@ -24,7 +24,7 @@ pipeline {
 
             sh 'pwd'
             sh 'aaaaa=1123'
-            sh 'echo ${aaaaa}'
+            sh 'echo ${a3}'
           }
         }
         stage('Stage 1 Parallel') {
