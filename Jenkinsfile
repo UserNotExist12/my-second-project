@@ -1,21 +1,24 @@
 pipeline {
   agent any
+  environment {
+    a1 = 'a1111111'
+    a2 = 'a2222222'
+    a3 = "${env.JOB_NAME + env.BUILD_NUMBER + '/13211'}"
+  }
   stages {
     stage('Stage 1') {
       parallel {
-        stage('Stage 1') {
-          agent any
+        stage('Parallel1-Stage 1') {
           environment {
-            a1 = 'a1111111'
-            a2 = 'a2222222'
-            a3 = "${env.JOB_NAME + env.BUILD_NUMBER + '/13211'} + '3333333'"
+            a1 = 'a1111111-stage1'
+            a2 = 'a2222222-stage1'
+            a3 = "${env.JOB_NAME + env.BUILD_NUMBER + '/13211-stage1'}"
           }
           steps {
             echo env.a2
             sh 'printenv'
             echo 'step1'
-            echo 'step2'
-            sh 'sleep 5s'
+            sh 'sleep 20'
             sh 'echo "this is a script"'
             sh 'mkdir sub1'
             dir(path: 'sub1') {
@@ -29,13 +32,12 @@ pipeline {
             echo "${a3}"
           }
         }
-        stage('Stage 1 Parallel') {
-          agent any
+        stage('Parallel1-Stage 2') {
           environment {
             paralell = 'true'
           }
           steps {
-            sleep 4
+            sleep 20
             sh 'echo parallel'
           }
         }
@@ -50,8 +52,30 @@ pipeline {
         echo 'step2'
         sh 'sleep 3s'
         sh 'echo "this is a script"'
-        sh '''echo 1
-echo 2'''
+        sh '''
+          echo 1
+          echo ${a2}
+        '''
+        sh """
+          echo 1
+          echo ${a2}
+        """
+      }
+    }
+    stage('Stage 3: in docker') {
+      agent {
+        docker { image 'busybox' }
+      }
+      environment {
+        a3 = 'docker'
+        IN_DOCKER = 'yes'
+      }
+      steps {
+        checkout scm
+        sh 'export'
+        sh 'printenv'
+        sh 'ls -l'
+        sh 'pwd'
       }
     }
   }
