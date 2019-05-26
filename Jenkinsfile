@@ -72,6 +72,8 @@ pipeline {
       }
       steps {
         checkout scm
+        sh 'sleep 1m'
+        sh 'ls -al /'
         sh 'export'
         sh 'printenv'
         sh 'ls -l'
