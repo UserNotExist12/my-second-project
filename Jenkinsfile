@@ -37,6 +37,7 @@ pipeline {
             paralell = 'true'
           }
           steps {
+            sh 'pwd'
             sleep 20
             sh 'echo parallel'
           }
@@ -48,6 +49,7 @@ pipeline {
         a2 = '2'
       }
       steps {
+        sh 'pwd'
         echo 'step1'
         echo 'step2'
         sh 'sleep 3s'
